@@ -61,7 +61,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-
     private void insertValues(SQLiteDatabase sqLiteDatabase) {
         //Beispiel Daten
         String[] userValues = {"niclig", "svewir", "matbei", "fabhae"};
