@@ -10,6 +10,8 @@ import android.provider.BaseColumns;
 
 /**
  * Klasse, die die Datenbank verwaltet, welche alle User, Passwörter, Namen und Klassen beinhaltet
+ *
+ * erstellt von Nick
  */
 public class UserDatabaseHelper extends SQLiteOpenHelper{
 
@@ -101,22 +103,20 @@ public class UserDatabaseHelper extends SQLiteOpenHelper{
         //Erstellt einen "Zeiger" der auf das Ergebnis der Query verweist
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery(SQL_QUERY_TEXT, new String[]{user,pw});
+        if((res != null) && (res.getCount() > 0)) {
+            //Speichert die Indexe der Spalten in einem Array
+            int[] indexColumns = {res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_USER), res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_PW),
+                    res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_CLASS), res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_NAME)};
 
-        //Speichert die Indexe der Spalten in einem Array
-        int[] indexColumns = {res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_USER), res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_PW),
-                res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_CLASS), res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_NAME)};
-
-
-        res.moveToFirst();
-        if(indexColumns.length > 0) {
+            res.moveToFirst();
             for (int i = 0; i < 4; i++) {
                 //geht die vier Spalten durch und fügt das Ergebnis der Query dem Ergebnis-Array hinzu
                 resolution[i] = res.getString(indexColumns[i]);
             }
             //gibt das Array zurück
             return resolution;
-        }
-        else{
+        } else {
+            //falls kein user mit dem Benutzernamen und Passwort vorhanden ist, wird null zurück gegeben
             return null;
         }
     }
