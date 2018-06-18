@@ -14,7 +14,7 @@
         android:layout_marginTop="60dp" />
 
     <EditText
-        android:id="@+id/textView"
+        android:id="@+id/loginUser"
         android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -27,11 +27,11 @@
          />
 
     <EditText
-        android:id="@+id/textView6"
+        android:id="@+id/loginPw"
         android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/loginUser"
         android:layout_centerHorizontal="true"
         android:hint="Password"
         android:textSize="20dp"
@@ -40,15 +40,14 @@
          />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/loginButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView6"
+        android:layout_below="@+id/loginPw"
         android:layout_centerHorizontal="true"
         android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        android:onClick="onClickBtn"
+        />
 
 </RelativeLayout>

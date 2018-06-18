@@ -6,15 +6,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-import android.util.Log;
-import android.widget.Toast;
 
+
+/**
+ * Klasse, die die Datenbank verwaltet, welche alle User, Passwörter, Namen und Klassen beinhaltet
+ */
 public class UserDatabaseHelper extends SQLiteOpenHelper{
 
+    private int x;
+
+    //SQL Befehl zum erstellen der Tabelle
     private static final String SQL_CREATE_TABLE = "CREATE TABLE " + FeedEntry.TABLE_NAME + " ( "
             + FeedEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + FeedEntry.COLUMN_NAME_USER
             + " TEXT, " + FeedEntry.COLUMN_NAME_PW + " TEXT, " + FeedEntry.COLUMN_NAME_CLASS + " INTEGER, " + FeedEntry.COLUMN_NAME_NAME + " TEXT )";
 
+    //SQL Query um zu überprüfen ob ein Benuter in der Datenbank ist. Die Fragezeichen werden von einer Methode ersetzt
     private static final String SQL_QUERY_TEXT = "SELECT * FROM " + FeedEntry.TABLE_NAME + " WHERE (" + FeedEntry.COLUMN_NAME_USER + " = ?  AND "
             + FeedEntry.COLUMN_NAME_PW + " = ? )";
     /**
@@ -60,39 +66,58 @@ public class UserDatabaseHelper extends SQLiteOpenHelper{
         onCreate(sqLiteDatabase);
     }
 
-
+    /**
+     * Fügt die Beispieldaten in die Datenbank ein
+     * @param sqLiteDatabase
+     */
     private void insertValues(SQLiteDatabase sqLiteDatabase) {
         //Beispiel Daten
         String[] userValues = {"niclig", "svewir", "matbei", "fabhae"};
         String[] pwValues = {"12345", "abcde", "12abc", "passwort"};
         int[] classValues = {11, 9, 6, 12};
-        String[] nameValues = {"Nick Ligmann", "Sven Wirts", "Mathis Beißner", "Fabian Haese"};
+        String[] nameValues = {"Nick Ligmann", "Sven Wirtz", "Mathis Beißner", "Fabian Haese"};
 
         for (int i = 0; i < userValues.length; i++){
+            //Packt die Daten in richtiger Reihenfolge in die jeweiligen Spalten
             ContentValues content = new ContentValues();
             content.put(FeedEntry.COLUMN_NAME_USER, userValues[i]);
             content.put(FeedEntry.COLUMN_NAME_PW, pwValues[i]);
             content.put(FeedEntry.COLUMN_NAME_CLASS, classValues[i]);
             content.put(FeedEntry.COLUMN_NAME_NAME, nameValues[i]);
+            //Fügt den Inhalt der Tabelle hinzu
             sqLiteDatabase.insert(FeedEntry.TABLE_NAME, null, content);
         }
     }
 
+    /**
+     * checkt ob ein Nutzer in der Datenbank ist und gibt ggf dessen Daten zurück
+     * @param user Username, welcher beim anmelden angegeben wird
+     * @param pw Passwort, welches beim anmelden angegeben wird
+     * @return Gibt ein Array zurück, welches den Nutzernamen, das Passwort, die Klasse und den vollen Namen enhält
+     */
     public String[] check(String user, String pw){
-
+        //Array fürs Ergebnis
         String[] resolution = new String[4];
-
+        //Erstellt einen "Zeiger" der auf das Ergebnis der Query verweist
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery(SQL_QUERY_TEXT, new String[]{user,pw});
 
+        //Speichert die Indexe der Spalten in einem Array
         int[] indexColumns = {res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_USER), res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_PW),
                 res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_CLASS), res.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_NAME)};
 
-        res.moveToFirst();
-        for(int i = 0; i < 4 ; i++){
-            resolution[i] = res.getString(indexColumns[i]);
-        }
 
-        return resolution;
+        res.moveToFirst();
+        if(indexColumns.length > 0) {
+            for (int i = 0; i < 4; i++) {
+                //geht die vier Spalten durch und fügt das Ergebnis der Query dem Ergebnis-Array hinzu
+                resolution[i] = res.getString(indexColumns[i]);
+            }
+            //gibt das Array zurück
+            return resolution;
+        }
+        else{
+            return null;
+        }
     }
 }
