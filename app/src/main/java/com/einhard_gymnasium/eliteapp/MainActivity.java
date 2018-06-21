@@ -52,6 +52,27 @@ public class MainActivity extends AppCompatActivity {
                         item.setChecked(true);
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.nav_stundenplan:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container, new StundenplanFragment());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Stundenplan");
+                        item.setChecked(true);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_termine:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.main_container, new KalenderFragment());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Kalender");
+                        item.setChecked(true);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_logout:
+
+
+
+                        
                 }
                 return true;
             }
