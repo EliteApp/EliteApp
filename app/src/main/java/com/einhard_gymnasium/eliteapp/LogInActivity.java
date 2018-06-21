@@ -40,7 +40,7 @@ public class LogInActivity extends AppCompatActivity {
 
         String[] resolution = userDatabaseHelper.check(userName.getText().toString(), pw.getText().toString());
 
-
+        // Die Nutzerdaten werden gespeichert
         if(resolution != null){
             startActivity(new Intent(this, MainActivity.class));
             profile.setUserName(this, resolution[0]);

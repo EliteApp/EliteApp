@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_logout:
+                        // Die Nutzerdaten werden wieder gelöscht
+                        // Der Nutzer gelangt zurück auf den LogIn
                         profile.setUserName(getApplicationContext(), "");
                         profile.setPassword(getApplicationContext(), "");
                         profile.setClass(getApplicationContext(), 0);
