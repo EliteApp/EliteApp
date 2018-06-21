@@ -19,15 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTransaction fragmentTransaction;
 
-    private Profile profile;
-
     private NavigationView navView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        profile = new Profile();
 
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.navigation_action);
         setSupportActionBar(toolbar);
@@ -74,13 +71,12 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_logout:
-                        profile.setUserName(getApplicationContext(), "");
-                        profile.setPassword(getApplicationContext(), "");
-                        profile.setClass(getApplicationContext(), 0);
-                        profile.setName(getApplicationContext(), "");
+                        SaveSharedPreferences.setUserName(getApplicationContext(), "");
+                        SaveSharedPreferences.setPassword(getApplicationContext(), "");
+                        SaveSharedPreferences.setClass(getApplicationContext(), 0);
+                        SaveSharedPreferences.setName(getApplicationContext(), "");
                         startActivity(new Intent(getApplicationContext(), LogInActivity.class));
 
-                        
                 }
                 return true;
             }

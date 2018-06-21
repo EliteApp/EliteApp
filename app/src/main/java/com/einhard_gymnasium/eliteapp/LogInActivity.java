@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ public class LogInActivity extends AppCompatActivity {
 
     private UserDatabaseHelper userDatabaseHelper;
 
-    private Profile profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +24,7 @@ public class LogInActivity extends AppCompatActivity {
         ImageView logo = findViewById(R.id.loginLogo);
         logo.setImageResource(R.drawable.logo_einhard);
 
-        profile = new Profile();
-
-        if(profile.getUserName(this).compareTo("") == 1) {
+        if(SaveSharedPreferences.getClass(this) != 0) {
             startActivity(new Intent(this, MainActivity.class));
         }
 
@@ -42,11 +38,11 @@ public class LogInActivity extends AppCompatActivity {
 
 
         if(resolution != null){
+            SaveSharedPreferences.setUserName(this, resolution[0]);
+            SaveSharedPreferences.setPassword(this, resolution[1]);
+            SaveSharedPreferences.setClass(this, Integer.parseInt(resolution[2]));
+            SaveSharedPreferences.setName(this, resolution[3]);
             startActivity(new Intent(this, MainActivity.class));
-            profile.setUserName(this, resolution[0]);
-            profile.setPassword(this, resolution[1]);
-            profile.setClass(this, Integer.parseInt(resolution[2]));
-            profile.setName(this, resolution[3]);
 
         }
         else{
