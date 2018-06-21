@@ -19,15 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTransaction fragmentTransaction;
 
-    private Profile profile;
 
     private NavigationView navView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        profile = new Profile();
 
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.navigation_action);
         setSupportActionBar(toolbar);

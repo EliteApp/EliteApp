@@ -17,30 +17,26 @@ public class SaveSharedPreferences {
 
     public static void setUserName(Context ctx, String userName){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.clear();
         editor.putString(USER_NAME, userName);
-        editor.apply();
+        editor.clear().commit();
     }
 
     public static void setPassword(Context ctx, String password){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.clear();
         editor.putString(PASSWORD, password);
-        editor.apply();
+        editor.clear().commit();
     }
 
     public static void setName(Context ctx, String name){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.clear();
         editor.putString(NAME, name);
-        editor.apply();
+        editor.clear().commit();
     }
 
     public static void setClass(Context ctx, int pClass){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.clear();
         editor.putInt(CLASS, pClass);
-        editor.apply();
+        editor.clear().commit();
     }
 
     public static String getUserName(Context ctx){

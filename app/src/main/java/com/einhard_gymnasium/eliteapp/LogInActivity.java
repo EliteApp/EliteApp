@@ -17,7 +17,6 @@ public class LogInActivity extends AppCompatActivity {
 
     private UserDatabaseHelper userDatabaseHelper;
 
-    private Profile profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +32,24 @@ public class LogInActivity extends AppCompatActivity {
 
         if(SaveSharedPreferences.getClass(this) != 0) {
             startActivity(new Intent(this, MainActivity.class));
+        } else if (SaveSharedPreferences.getClass(this) == 0) {
         }
-
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(SaveSharedPreferences.getClass(this) != 0){
+            Intent intent = new Intent(this, MainActivity.class);
+            this.startActivity(intent);
+
+        }
+    }
+
 // by Nathalie
     public void onClickBtn(View v){
+        Toast.makeText(this, SaveSharedPreferences.getUserName(this), Toast.LENGTH_LONG);
         EditText userName = findViewById(R.id.loginUser);
         EditText pw = findViewById(R.id.loginPw);
 
@@ -50,11 +62,14 @@ public class LogInActivity extends AppCompatActivity {
             SaveSharedPreferences.setClass(this, Integer.parseInt(resolution[2]));
             SaveSharedPreferences.setName(this, resolution[3]);
             startActivity(new Intent(this, MainActivity.class));
-
+            LogInActivity.this.finish();
         }
         else{
             Toast.makeText(this, "" + "wrong username or password", Toast.LENGTH_LONG).show();
         }
 
+
+
     }
+
 }
