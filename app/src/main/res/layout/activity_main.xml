@@ -7,6 +7,8 @@
     tools:context=".MainActivity"
     android:id="@+id/drawerLayout">
 
+    // by Nick
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

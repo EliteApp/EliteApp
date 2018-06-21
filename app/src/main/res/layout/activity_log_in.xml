@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".LogInActivity">
 
+
+    //by Nathalie
+
     <ImageView
         android:id="@+id/loginLogo"
         android:layout_width="wrap_content"

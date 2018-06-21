@@ -9,7 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
+// by Nick
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -19,12 +19,15 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTransaction fragmentTransaction;
 
+    private Profile profile;
+
     private NavigationView navView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        profile = new Profile();
 
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.navigation_action);
         setSupportActionBar(toolbar);
@@ -71,12 +74,17 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_logout:
+                        // by Nathalie
+                        // Die Nutzerdaten werden wieder gelöscht
+                        // Der Nutzer gelangt zurück auf den LogIn
                         SaveSharedPreferences.setUserName(getApplicationContext(), "");
                         SaveSharedPreferences.setPassword(getApplicationContext(), "");
                         SaveSharedPreferences.setClass(getApplicationContext(), 0);
                         SaveSharedPreferences.setName(getApplicationContext(), "");
+
                         startActivity(new Intent(getApplicationContext(), LogInActivity.class));
 
+                        
                 }
                 return true;
             }
