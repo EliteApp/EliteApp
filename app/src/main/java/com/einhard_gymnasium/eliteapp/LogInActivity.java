@@ -27,6 +27,11 @@ public class LogInActivity extends AppCompatActivity {
         logo.setImageResource(R.drawable.logo_einhard);
 
         profile = new Profile();
+
+        if(profile.getUserName(this)!= null) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
+
     }
 
     public void onClickBtn(View v){
@@ -34,6 +39,7 @@ public class LogInActivity extends AppCompatActivity {
         EditText pw = findViewById(R.id.loginPw);
 
         String[] resolution = userDatabaseHelper.check(userName.getText().toString(), pw.getText().toString());
+
 
         if(resolution != null){
             startActivity(new Intent(this, MainActivity.class));
