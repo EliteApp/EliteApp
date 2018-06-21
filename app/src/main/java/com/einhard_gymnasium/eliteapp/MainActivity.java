@@ -74,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_logout:
-                        startActivity(new Intent(getApplicationContext(), LogInActivity.class));
-                        profile.setUserName(getApplicationContext(), null);
-                        profile.setPassword(getApplicationContext(), null);
+                        profile.setUserName(getApplicationContext(), "");
+                        profile.setPassword(getApplicationContext(), "");
                         profile.setClass(getApplicationContext(), 0);
-                        profile.setName(getApplicationContext(), null);
+                        profile.setName(getApplicationContext(), "");
+                        startActivity(new Intent(getApplicationContext(), LogInActivity.class));
 
                         
                 }

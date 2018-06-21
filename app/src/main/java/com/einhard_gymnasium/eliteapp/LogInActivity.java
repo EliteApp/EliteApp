@@ -28,7 +28,7 @@ public class LogInActivity extends AppCompatActivity {
 
         profile = new Profile();
 
-        if(profile.getUserName(this)!= null) {
+        if(profile.getUserName(this).compareTo("") == 1) {
             startActivity(new Intent(this, MainActivity.class));
         }
 
