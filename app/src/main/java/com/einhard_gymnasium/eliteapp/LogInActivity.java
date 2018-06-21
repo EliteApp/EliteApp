@@ -1,5 +1,6 @@
 package com.einhard_gymnasium.eliteapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,10 +34,10 @@ public class LogInActivity extends AppCompatActivity {
         String[] resolution = userDatabaseHelper.check(userName.getText().toString(), pw.getText().toString());
 
         if(resolution != null){
-            Toast.makeText(this, "Hat funktioniert", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, MainActivity.class));
         }
         else{
-            Toast.makeText(this, "" + "Hat nicht funktioniert", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "" + "wrong username or password", Toast.LENGTH_LONG).show();
         }
 
     }
