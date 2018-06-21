@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.einhard_gymnasium.eliteapp.Databases.UserDatabaseHelper;
 
+//by Nick
+
 public class LogInActivity extends AppCompatActivity {
 
     private UserDatabaseHelper userDatabaseHelper;
@@ -28,18 +30,20 @@ public class LogInActivity extends AppCompatActivity {
 
         profile = new Profile();
 
+        //Überprüft, ob noch Nutzderdaten gespeichert sind
+        //wenn ja, gelangt der Nutzer direkt auf seine Startseite, ohne sich neu anmelden zu müssen
         if(profile.getUserName(this).compareTo("") == 1) {
             startActivity(new Intent(this, MainActivity.class));
         }
 
     }
-
+// by Nathalie
     public void onClickBtn(View v){
         EditText userName = findViewById(R.id.loginUser);
         EditText pw = findViewById(R.id.loginPw);
 
         String[] resolution = userDatabaseHelper.check(userName.getText().toString(), pw.getText().toString());
-
+        // Der Nutzer wird eingeloggt, gelangt auf seine Startseite
         // Die Nutzerdaten werden gespeichert
         if(resolution != null){
             startActivity(new Intent(this, MainActivity.class));

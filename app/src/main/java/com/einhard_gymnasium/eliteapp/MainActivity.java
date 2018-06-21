@@ -9,7 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
+// by Nick
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_logout:
+                        // by Nathalie
                         // Die Nutzerdaten werden wieder gelöscht
                         // Der Nutzer gelangt zurück auf den LogIn
                         profile.setUserName(getApplicationContext(), "");
