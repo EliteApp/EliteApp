@@ -9,6 +9,7 @@ public class Profile {
     private static final String USER_NAME = "userName";
     private static final String NAME = "name";
     private static final String CLASS = "class";
+    private static final String PASSWORD = "password";
 
     private static SharedPreferences getSharedPreferences(Context ctx){
         return PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -20,13 +21,19 @@ public class Profile {
         editor.apply();
     }
 
+    public static void setPassword(Context ctx, String password){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putString(PASSWORD, password);
+        editor.apply();
+    }
+
     public static void setName(Context ctx, String name){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(NAME, name);
         editor.apply();
     }
 
-    private static void setClass(Context ctx, int pClass){
+    public static void setClass(Context ctx, int pClass){
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putInt(CLASS, pClass);
         editor.apply();

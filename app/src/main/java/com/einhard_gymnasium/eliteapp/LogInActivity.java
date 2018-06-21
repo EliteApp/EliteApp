@@ -15,6 +15,7 @@ public class LogInActivity extends AppCompatActivity {
 
     private UserDatabaseHelper userDatabaseHelper;
 
+    private Profile profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class LogInActivity extends AppCompatActivity {
         ImageView logo = findViewById(R.id.loginLogo);
         logo.setImageResource(R.drawable.logo_einhard);
 
+        profile = new Profile();
     }
 
     public void onClickBtn(View v){
@@ -35,6 +37,11 @@ public class LogInActivity extends AppCompatActivity {
 
         if(resolution != null){
             startActivity(new Intent(this, MainActivity.class));
+            profile.setUserName(this, resolution[0]);
+            profile.setPassword(this, resolution[1]);
+            profile.setClass(this, Integer.parseInt(resolution[2]));
+            profile.setName(this, resolution[3]);
+
         }
         else{
             Toast.makeText(this, "" + "wrong username or password", Toast.LENGTH_LONG).show();

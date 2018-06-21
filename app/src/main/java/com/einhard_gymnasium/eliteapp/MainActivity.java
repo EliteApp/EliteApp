@@ -1,5 +1,6 @@
 package com.einhard_gymnasium.eliteapp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_logout:
-
+                        startActivity(new Intent(getApplicationContext(), LogInActivity.class));
 
 
                         
